@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_state_manager/tipos/model/aluno.dart';
 
-class TiposReativosGenericosPage extends StatelessWidget {
-  final nome = Rx<String>('Renato Alves');
-  final isAluno = Rx<bool>(true);
-  final qtdCursos = Rx<int>(2);
-  final valorCurso = Rx<double>(1350.00);
-  final jornadas = Rx<List<String>>(
+class TiposReativosGenericosNulosPage extends StatelessWidget {
+  final nome = Rxn<String>('Renato Alves');
+  final isAluno = Rxn<bool>(true);
+  final qtdCursos = Rxn<int>(2);
+  final valorCurso = Rxn<double>(1350.00);
+  final jornadas = Rxn<List<String>>(
     ['Jornada GetX', 'Jornada ADF'],
   );
-  final aluno = Rx<Map<String, dynamic>>({
+  final aluno = Rxn<Map<String, dynamic>>({
     'id': 500,
     'nome': 'Renato Alves',
     'tipo': 'Aluno',
@@ -24,7 +24,7 @@ class TiposReativosGenericosPage extends StatelessWidget {
     ),
   );
 
-  TiposReativosGenericosPage({super.key});
+  TiposReativosGenericosNulosPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,21 +50,21 @@ class TiposReativosGenericosPage extends StatelessWidget {
             Obx(
               () {
                 debugPrint('Montando id do aluno');
-                return Text('Id do aluno: ${aluno.value['id']}');
+                return Text('Id do aluno: ${aluno.value?['id']}');
               },
             ),
             Obx(() {
               debugPrint('Montando nome do aluno');
-              return Text('Nome do aluno: ${aluno.value['nome']}');
+              return Text('Nome do aluno: ${aluno.value?['nome']}');
             }),
             Obx(
               () => Column(
-                children: jornadas.value.map(Text.new).toList(),
+                children: jornadas.value?.map(Text.new).toList() ?? [],
               ),
             ),
             ElevatedButton(
               onPressed: () {
-                aluno.value['id'] = 10;
+                aluno.value?['id'] = 10;
                 // Necessário o refresh nessa abordagem
                 aluno.refresh();
               },
@@ -74,7 +74,7 @@ class TiposReativosGenericosPage extends StatelessWidget {
               onPressed: () {
                 // jornadas.value.add('Jornada Dart.');
                 // assign: remove elementos da lista atualiza com os novos elementos.
-                jornadas.value.assign('Jornada Dart');
+                jornadas.value?.assign('Jornada Dart');
                 // Necessário o refresh nessa abordagem
                 jornadas.refresh();
               },

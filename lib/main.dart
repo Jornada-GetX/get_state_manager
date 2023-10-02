@@ -5,6 +5,8 @@ import 'package:get_state_manager/home_page.dart';
 import 'package:get_state_manager/tipos/tipos_reativos_genericos_page.dart';
 import 'package:get_state_manager/tipos/tipos_reativos_page.dart';
 
+import 'tipos/tipos_reativos_genericos_nulos_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -38,6 +40,11 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/tiposReativosGenericos',
           page: () => TiposReativosGenericosPage(),
+        ),
+
+                GetPage(
+          name: '/tiposReativosGenericosNulos',
+          page: () => TiposReativosGenericosNulosPage(),
         ),
       ],
     );
