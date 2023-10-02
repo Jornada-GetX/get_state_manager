@@ -50,8 +50,9 @@ class TiposReativosPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                // jornadas.add('Jornada Dart.');
-                jornadas.assign('Jornada Dart');
+                jornadas.add('Jornada Dart.');
+                // assign: remove elementos da lista atualiza com os novos elementos.
+                // jornadas.assign('Jornada Dart');
               },
               child: const Text('Adicionar jornada'),
             ),
