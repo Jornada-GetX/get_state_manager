@@ -7,22 +7,18 @@ class TiposObsPage extends StatelessWidget {
   final isAluno = true.obs;
   final qtdCursos = 2.obs;
   final valorCurso = 1350.00.obs;
-  final jornadas =
-    ['Jornada GetX', 'Jornada ADF'].obs
-  ;
+  final jornadas = ['Jornada GetX', 'Jornada ADF'].obs;
   final aluno = {
     'id': 500,
     'nome': 'Renato Alves',
     'tipo': 'Aluno',
   }.obs;
-  final alunoModel = 
-    Aluno(
-      id: 1,
-      nome: 'Renato',
-      email: 'renatorv@gmail.com',
-      curso: 'Jornada GetX',
-    ).obs
-  ;
+  final alunoModel = Aluno(
+    id: 1,
+    nome: 'Renato',
+    email: 'renatorv@gmail.com',
+    curso: 'Jornada GetX',
+  ).obs;
 
   TiposObsPage({super.key});
 
@@ -50,23 +46,21 @@ class TiposObsPage extends StatelessWidget {
             Obx(
               () {
                 debugPrint('Montando id do aluno');
-                return Text('Id do aluno: ${aluno.value['id']}');
+                return Text('Id do aluno: ${aluno['id']}');
               },
             ),
             Obx(() {
               debugPrint('Montando nome do aluno');
-              return Text('Nome do aluno: ${aluno.value['nome']}');
+              return Text('Nome do aluno: ${aluno['nome']}');
             }),
             Obx(
               () => Column(
-                children: jornadas.value.map(Text.new).toList() ?? [],
+                children: jornadas.map(Text.new).toList(),
               ),
             ),
             ElevatedButton(
               onPressed: () {
-                aluno.value['id'] = 10;
-                // Necessário o refresh nessa abordagem
-                aluno.refresh();
+                aluno['id'] = 10;
               },
               child: const Text('Alterar ID'),
             ),
@@ -74,9 +68,8 @@ class TiposObsPage extends StatelessWidget {
               onPressed: () {
                 // jornadas.value.add('Jornada Dart.');
                 // assign: remove elementos da lista atualiza com os novos elementos.
-                jornadas.value.assign('Jornada Dart');
-                // Necessário o refresh nessa abordagem
-                jornadas.refresh();
+                jornadas.assign('Jornada Dart');
+
               },
               child: const Text('Adicionar jornada'),
             ),
